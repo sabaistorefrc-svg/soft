@@ -10,6 +10,8 @@ import { BottleneckStagesView } from './components/BottleneckStagesView';
 import { DemandsTable } from './components/DemandsTable';
 import { WorkloadView } from './components/WorkloadView';
 import { DemandDetailModal } from './components/DemandDetailModal';
+import { WeeklyEvolutionTrendChart } from './components/WeeklyEvolutionTrendChart';
+import { WeeklyTrendAlert } from './components/WeeklyTrendAlert';
 import { 
   AlertTriangle, 
   ArrowRight, 
@@ -207,6 +209,15 @@ export default function App() {
             <div className="space-y-6">
               {/* Executive KPI Cards */}
               <KpiCards metrics={metrics} onSelectFilter={handleKpiFilterJump} />
+
+              {/* Weekly Trend Alert (Week-over-Week Percentage Indicator) */}
+              <WeeklyTrendAlert 
+                demands={demands} 
+                onViewStagnant={() => setActiveTab('stagnant')} 
+              />
+
+              {/* Weekly Evolution Trend Chart (Last 4 Weeks) */}
+              <WeeklyEvolutionTrendChart demands={demands} />
 
               {/* Main Urgent Callout for Stagnant Demands */}
               <div className="p-5 rounded-2xl bg-gradient-to-r from-rose-950/50 via-slate-900 to-indigo-950/40 border border-rose-900/60 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-5">
